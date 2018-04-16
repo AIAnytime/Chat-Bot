@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chatbot</title>
+<style>
+body { 
+	color: #421; font-weight: bold; font-size: 18px; background: #EE4; 
+	background-image: url("girl.png"); background-repeat: repeat-y; 
+}
+span { 
+	color: #711; 
+} 
+::-webkit-input-placeholder { 
+	color: #711 
+}
+#main { 
+	position: fixed; top: 40%; right: 60px; width: 400px; 
+	border: 0px solid #421; padding: 40px; 
+}
+#main div { 
+	margin: 10px; 
+} 
+#input { 
+	border: 0; background: #EBE547; padding: 5px; border: 1px solid #421; 
+}
+</style>
+</head>
+<body>
+<div id="main">
+	<div>user: <span id="user"></span></div>
+	<div>chatbot: <span id="chatbot"></span></div>
+	<div><input id="input" type="text" placeholder="say anything..." autocomplete="off"/></div>
+</div>
+<script type="text/javascript">
+var trigger = [
+	["hi","hey","hello","hello brother","hi brother","hi bro","hii","hi girl","hey girl","hi beautiful"], 
+	["what is special about u","special about you","special"],
+	["how r you doing", "how is life", "how are things","how r u","kaisi ho","how are you","how r u"],
+	["what are you doing", "what is going on"],
+	["how old are you"],
+	["who are you", "are you human", "are you bot", "are you human or bot","who r u","who are u","who r you"],
+	["who created you", "who made you","who created u","who made u"],
+	["your name please",  "your name", "may i know your name", "what is your name"],
+	["i love you","i love u","love u","my love"],
+	["happy", "good"],
+	["bad", "bored", "tired"],
+	["help me", "tell me story", "tell me joke"],
+	["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
+	["i need a website","website","i want to create a website","website for my business","will you make a website for me","i want an app","i want to create an androiod app","i want a software"],
+	["rate for a responsive website?","rate"],
+	["you r a fool","you are a fool","u fool","you are fool","you are a fool","arey pagal","u r fool"],
+	["i hate you","i hate u","hate u","hate you"],
+	["which language u know","which language you know","which language u understand","language?","language","hindi or english"],
+	["software","desktop software","desktop","app","android app","apps","softwares"],
+	["where do u live","ghar kaha hain","house","home","where are u from","where are you from","where do you live"],
+	["how can i contact you","kaise mile","how to contact","contact"],
+	["mobile number","your mobile number","ur mobile number","ur number","your number"],
+	["do you blv in god","what is god"],
+	["nice talking u","nice talking to u","u r funny","you are funny"],
+	["your prize","your rate","what is your rate","what is ur rate","ur rate"],
+	["u r mad","you are mad","u mad","mad","you mad","u are mad"],
+	["feelings","do you have feeling","do u have feeling","any feeling"],
+	["who is the prime minister of india","pm of india","who is the pm of india"],
+	["are you real","r u real","are u real","real"],
+	["what is your father name"],
+	["your hobbies","hobby","hobbies","what are ur hobbies","your hobbie","ur hobbies","ur hobby"],
+	["Tell something about sonu","who is sonu","sonu is a fool","sonu pagal hain kya","is sonu a fool"],
+	["name of your company","ur company name","company name","what is your company name","what is ur company name"],
+	["how old your company is","age of your company","how old webhub studio is"],
+	["tell something about webhub studio","say something about webhub studio","tell something about your company","say something about your company","say something about ur company"],
+	["how can you help me","how can u help me","help me","will u help me","will you help me","i need ur help","i need your help","i need help"],
+	["what time is it","what is the time right now","tell me the time","can you tell me the time","tell current time","time","current time"],
+	["u r sexy","u r beautiful","u r hot","you are sexy","you are beautiful","you are really very beautiful","u beautiful","you sexy","hey sexy"],
+	["yes","yes i will marry you","lets go","lets marriage"],
+	["who is your boss","what is the name of your boss","your boss name","ur boss name","name of boss","who is ur boss"],
+	["do u have any bf","any bf","do u have any boy friend","do you have any bf","do you have any boyfriend"],
+	["your favourite player","ur favourite player","who is your favourite","who is ur favourite","your favorite player"],
+	["i am a human being","i am a human","i am a man","i am a girl","i m a human being","i m a human"],
+	["say something","say anything u like","say anything u want","say anything"],
+	["bye", "good bye", "goodbye", "see you later","byee","tata"]
+];
+var reply = [
+	["Hi","Hey","Hello","hey dear How can i help u?","hello dear","hey dear"], 
+	["24*7 user support","friendly nature"],
+	["Fine", "Pretty well", "Fantastic","Fine what about u mate","sab badhiya,aap btaye!"],
+	["Nothing much", "About to go to sleep", "Can you guest?", "I don't know actually"],
+	["I am 1 day old"],
+	["I am just a bot", "I am a bot. What are you?"],
+	["Sonu Kumar", "My God","webhub studio"],
+	["I am nameless", "I don't have a name"],
+	["I love you too", "Me  too"],
+	["Have you ever felt bad?", "Glad to hear it"],
+	["Why?", "Why? You shouldn't!", "Try watching TV"],
+	["I will", "What about?"],
+	["Tell me a story", "Tell me a joke", "Tell me about yourself", "You are welcome"],
+	["sure,leave a message to contact form","go to contact us form","just leave a message in form","leave message in contact form"],
+	["Eshh leave an enquiry in contact form","lets chat in contact form"],
+	["a fool only talks to a fool haha"],
+	["i will try to impress u next time"],
+	["english will be better","sirf english dear","english only"],
+	["we create and u can leave a message in contact form"],
+	["i live in a server","web server mate","server is my house"],
+	["21/N, Das Para,Jhandabag,Dgp-03"],
+	["8609751381"],
+	["god is a power inside us"],
+	["i am a machine and i have to be funny"],
+	["happy to help u contact form mein message de dijiye"],
+	["thanks for appreciation dear"],
+	["i spread love so feeling does not matter"],
+	["Narendra Modi"],
+	["i am a ghost"],
+	["i m godfather dear"],
+	["i like to help people the most"],
+	["he is the best ","sonu is the best in the world"],
+	["webhub studio"],
+	["it is 6 months old"],
+	["webhub studio is your digital partner so u should give a try to work with us"],
+	["what can i do for u  sir","what is your requirement"],
+	["time is a  myth and it never stops for anyone so just add 1 second to the current time"],
+	["would u like to marry me","marry me  then"," u should marry me"],
+	["ask my boss"],
+	["sonu  is my boss"],
+	["no but may be i fall into love  soon"],
+	["ms dhoni","virat kohli"," my creator   sonu"],
+	["that is nice and i like human"],
+	["Robot will never replace human"],
+	["Bye", "Goodbye", "See you later","talk u soon  mate"]
+];
+var alternative = ["oops  i m not getting you...", "sorry i m still learning..."];
+document.querySelector("#input").addEventListener("keypress", function(e){
+	var key = e.which || e.keyCode;
+	if(key === 13){ //Enter button
+		var input = document.getElementById("input").value;
+		document.getElementById("user").innerHTML = input;
+		output(input);
+	}
+});
+function output(input){
+	try{
+		var product = input + "=" + eval(input);
+	} catch(e){
+		var text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and 
+		text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "");
+		if(compare(trigger, reply, text)){
+			var product = compare(trigger, reply, text);
+		} else {
+			var product = alternative[Math.floor(Math.random()*alternative.length)];
+		}
+	}
+	document.getElementById("chatbot").innerHTML = product;
+	speak(product);
+	document.getElementById("input").value = ""; //clear input value
+}
+function compare(arr, array, string){
+	var item;
+	for(var x=0; x<arr.length; x++){
+		for(var y=0; y<array.length; y++){
+			if(arr[x][y] == string){
+				items = array[x];
+				item =  items[Math.floor(Math.random()*items.length)];
+			}
+		}
+	}
+	return item;
+}
+function speak(string){
+	var utterance = new SpeechSynthesisUtterance();
+	utterance.voice = speechSynthesis.getVoices().filter(function(voice){return voice.name == "Agnes";})[0];
+	utterance.text = string;
+	utterance.lang = "en-US";
+	utterance.volume = 1; //0-1 interval
+	utterance.rate = 1;
+	utterance.pitch = 2; //0-2 interval
+	speechSynthesis.speak(utterance);
+}
+</script>
+</body>
+<body oncontextmenu="return false;">
+</html>
